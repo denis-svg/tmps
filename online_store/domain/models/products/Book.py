@@ -14,3 +14,9 @@ class Book(ProductInterface):
 
     def getTitle(self) -> str:
         return self.title
+    
+    def clone(self):
+        return Book(self.title, self.author, self.price)
+    
+    def __str__(self):
+        return f"{self.title} by {self.author} - Price: ${self.price:.2f}"

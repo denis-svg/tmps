@@ -12,3 +12,7 @@ class ProductInterface(ABC):
     @abstractmethod
     def getTitle(self) -> str:
         pass
+
+    @abstractmethod
+    def clone(self) -> 'ProductInterface':
+        pass

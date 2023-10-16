@@ -14,3 +14,9 @@ class Electronic(ProductInterface):
 
     def getTitle(self) -> str:
         return self.name
+    
+    def clone(self):
+        return Electronic(self.name, self.brand, self.price)
+    
+    def __str__(self):
+        return f"{self.name} by {self.brand} - Price: ${self.price:.2f}"

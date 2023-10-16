@@ -30,9 +30,8 @@ class Customer(CustomerInterface):
     def add_item_to_cart(self, catalog: Catalog, item):
         if self.check_item_in_catalog(catalog, item):
             self.shopping_cart.add_item(item)
-            catalog.remove_item(item)
-            return f"Item added"
-        return f"Item does not exist"
+            print(f"{self.name}:{self.email} has added in his/hers shopping cart {item}")
+        print(f"{item} is not in the catalog")
     
     def clear_cart(self):
         self.shopping_cart.items = []
@@ -44,3 +43,4 @@ class Admin(AdminInterface):
 
     def add_item_to_catalog(self, catalog:Catalog, item: ProductInterface):
         catalog.add_item(item)
+        print(f"{self.name}:{self.email} has added to the catalog {item}")

@@ -41,4 +41,14 @@ public class ShoppingCart implements ShoppingCartInterface {
         this.items = new ArrayList<>();
     }
 
+    @Override
+    public ShoppingCartMemento saveToMemento() {
+        return new ShoppingCartMemento(items);
+    }
+
+    @Override
+    public void restoreFromMemento(ShoppingCartMemento memento) {
+        this.items = memento.getItems();
+    }
+
 }

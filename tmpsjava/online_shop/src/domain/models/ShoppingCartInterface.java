@@ -12,4 +12,8 @@ public interface ShoppingCartInterface {
     public List<ProductInterface> getItems();
 
     public void clear();
+
+    ShoppingCartMemento saveToMemento();
+
+    void restoreFromMemento(ShoppingCartMemento memento);
 }

@@ -26,14 +26,36 @@ public class ClientUI {
         admin1.addItemToCatalog(catalog, electronic1);
 
         Customer customer = new Customer("Ion", "ion@gmail.com", new ShoppingCart());
-        //customer.addItemToCart(catalog, electronic1);
-        //customer.addItemToCart(catalog, book3);
-        //customer.addItemToCart(catalog, book2);
-        ProductBundle books = new ProductBundle();
-        books.addProduct(book1);
-        books.addProduct(book2);
-        books.addProduct(book1.copy());
-        customer.addItemToCart(catalog, books);
+        ShoppingCartHistory history = new ShoppingCartHistory();
+
+        customer.addItemToCart(catalog, electronic1);
+        history.addToHistory(customer.getShoppingCart().saveToMemento());
+        customer.addItemToCart(catalog, book1);
+        customer.addItemToCart(catalog, book2);
+        //history.addToHistory(customer.getShoppingCart().saveToMemento());
+
+        book3.addObserver(customer);
+        book3.addObserver(admin1);
+        book3.modifyPrice(1200.0f);
+
+        // Display current items and total price
+        System.out.println("Current items in the shopping cart:");
+        for (ProductInterface item : customer.getShoppingCart().getItems()) {
+            System.out.println(item.getTitle());
+        }
+        System.out.println("Total Price: $" + customer.getShoppingCart().calculateTotalPrice());
+
+        // Undo to the previous state
+        ShoppingCartMemento previousState = history.undo();
+        if (previousState != null) {
+            customer.getShoppingCart().restoreFromMemento(previousState);
+            System.out.println("\nRestored to the previous state:");
+            for (ProductInterface item : customer.getShoppingCart().getItems()) {
+                System.out.println(item.getTitle());
+            }
+            System.out.println("Total Price: $" + customer.getShoppingCart().calculateTotalPrice());
+        }
+
         PaymentOptionBuilder visaBuilder = new VisaPaymentBuilder()
                 .setCardNumber("1234-5678-9012-3456")
                 .setCardHolder("John Doe")

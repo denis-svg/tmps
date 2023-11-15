@@ -59,4 +59,19 @@ public class ProductBundle implements ProductInterface {
     public List<ProductInterface> getItems() {
         return this.products;
     }
+
+    @Override
+    public void addObserver(Observer observer) {
+
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+
+    }
+
+    @Override
+    public void notifyObservers(String message) {
+
+    }
 }

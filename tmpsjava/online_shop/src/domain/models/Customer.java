@@ -1,11 +1,12 @@
 package domain.models;
 
+import domain.models.products.Observer;
 import domain.models.products.ProductBundle;
 import domain.models.products.ProductInterface;
 
 import java.util.List;
 
-public class Customer implements CustomerInterface{
+public class Customer implements CustomerInterface, Observer {
     private String name;
     private String email;
     public ShoppingCartInterface shopping_cart;
@@ -18,6 +19,11 @@ public class Customer implements CustomerInterface{
     @Override
     public boolean checkItemInCatalog(Catalog catalog, ProductInterface item) {
         return catalog.search_item(item) != null;
+    }
+
+    @Override
+    public void update(String productName, String message) {
+        System.out.println(name + ", you are subscribed to " + productName + ". Message: " + message);
     }
 
     @Override

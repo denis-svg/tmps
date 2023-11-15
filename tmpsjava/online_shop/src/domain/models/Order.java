@@ -2,6 +2,7 @@ package domain.models;
 
 import domain.models.products.ProductInterface;
 
+// Order class using the payment strategy
 public class Order {
     CustomerInterface customer;
     PaymentOptionInterface payment_gateway;

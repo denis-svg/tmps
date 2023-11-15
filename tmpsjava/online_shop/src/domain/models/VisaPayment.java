@@ -1,5 +1,6 @@
 package domain.models;
 
+// Visa payment strategy
 class VisaPayment implements PaymentOptionInterface {
     private String cardNumber;
     private String cardHolder;
